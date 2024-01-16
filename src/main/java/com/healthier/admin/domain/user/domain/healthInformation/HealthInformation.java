@@ -4,12 +4,13 @@ import com.healthier.admin.domain.user.domain.User;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
-@Setter
 @Entity
+@Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class HealthInformation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
