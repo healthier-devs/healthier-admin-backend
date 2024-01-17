@@ -21,6 +21,11 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Make .env
+        run: |
+          touch .env
+          echo "${{ secrets.ENV_VARS }}" > .env
+
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
@@ -68,7 +73,7 @@ jobs:
 
       - name: Make .zip
         run: |
-          zip -r deployment_package.zip ./scripts/* appspec.yml 
+          zip -r deployment_package.zip ./scripts/* appspec.yml .env
 
       - name: Upload .zip to Amazon S3
         run: |
