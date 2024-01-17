@@ -15,4 +15,4 @@ if docker ps -a | grep -q "<CONTAINER_NAME>"; then
     docker rm <CONTAINER_NAME>
 fi
 
-docker run --env-file ../env.txt -d --name <CONTAINER_NAME> -p 8080:8080 $IMAGE_NAME
+docker run --env-file /home/ec2-user/app/env.txt -d --name <CONTAINER_NAME> -p 8080:8080 $IMAGE_NAME
