@@ -64,7 +64,7 @@ jobs:
           sed -i "s/<ECR_REPOSITORY>/$ECR_REPOSITORY/g" scripts/start_docker.sh
           sed -i "s/<IMAGE_TAG>/$IMAGE_TAG/g" scripts/start_docker.sh
           sed -i "s/<CONTAINER_NAME>/${{ env.CONTAINER_NAME }}/g" scripts/stop_docker.sh
-          sed -i "s/<CONTAINER_NAME>/${{ env.CONTAINER_NAME }}/g" scripts/start_docker.sh
+          sed -i "s/<CONTAINER_NAME>/${{ env.CONTAINER_NAME }}/g" scripts/validate_docker.sh
 
       - name: Make .zip
         run: |
