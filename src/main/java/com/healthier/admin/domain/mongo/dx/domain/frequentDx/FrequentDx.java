@@ -1,6 +1,7 @@
 package com.healthier.admin.domain.mongo.dx.domain.frequentDx;
 
 import java.util.List;
+import lombok.Builder;
 import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -8,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 @Getter
 @Document(collection = "FrequentDx")
+@Builder
 public class FrequentDx {
     @Id private String id;
 
