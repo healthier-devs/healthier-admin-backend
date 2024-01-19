@@ -2,8 +2,8 @@ package com.healthier.admin.dx.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.healthier.admin.domain.mongo.dx.domain.frequentDx.FrequentDx;
-import com.healthier.admin.domain.mongo.dx.repository.FrequentDxRepository;
+import com.healthier.admin.domain.dx.domain.frequentDx.FrequentDx;
+import com.healthier.admin.domain.dx.repository.FrequentDxRepository;
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
