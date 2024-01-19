@@ -2,9 +2,9 @@ package com.healthier.admin.challenge.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.healthier.admin.domain.mysql.challenge.domain.Challenge;
-import com.healthier.admin.domain.mysql.challenge.domain.ChallengeStatus;
-import com.healthier.admin.domain.mysql.challenge.repository.ChallengeRepository;
+import com.healthier.admin.domain.challenge.domain.Challenge;
+import com.healthier.admin.domain.challenge.domain.ChallengeStatus;
+import com.healthier.admin.domain.challenge.repository.ChallengeRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
