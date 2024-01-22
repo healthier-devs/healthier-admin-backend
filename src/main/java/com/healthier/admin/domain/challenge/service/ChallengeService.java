@@ -9,7 +9,6 @@ import com.healthier.admin.domain.challenge.dto.ChallengeRequest;
 import com.healthier.admin.domain.challenge.dto.ChallengeResponse;
 import com.healthier.admin.domain.challenge.dto.SimpleChallengeResponse;
 import com.healthier.admin.domain.challenge.repository.ChallengeRepository;
-
 import java.util.List;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
@@ -75,6 +74,8 @@ public class ChallengeService {
             challenge.updateFailImage2(challenge.getFailImage2());
         if (challengeRequest.getIsPublic() != null)
             challenge.updateIsPublic(challengeRequest.getIsPublic());
+        if (challengeRequest.getImage() != null)
+            challenge.updateBasicImage(challengeRequest.getImage());
 
         challengeRepository.save(challenge);
     }
@@ -89,7 +90,8 @@ public class ChallengeService {
     public PageResponse<?> getAllChallenges(PageCondition pageCondition) {
         Pageable pageable = PageRequest.of(pageCondition.getPage(), pageCondition.getSize());
         Page<Challenge> challenges = challengeRepository.findAll(pageable);
-        List<SimpleChallengeResponse> simpleChallengeResponses = challenges.stream().map(SimpleChallengeResponse::from).toList();
+        List<SimpleChallengeResponse> simpleChallengeResponses =
+                challenges.stream().map(SimpleChallengeResponse::from).toList();
         return new PageResponse<>(simpleChallengeResponses, challenges.getTotalElements());
     }
 }

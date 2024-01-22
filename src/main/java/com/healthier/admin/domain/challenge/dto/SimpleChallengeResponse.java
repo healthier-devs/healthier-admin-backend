@@ -19,7 +19,7 @@ public class SimpleChallengeResponse {
         this.isPublic = isPublic;
     }
 
-    public static SimpleChallengeResponse from(Challenge challenge){
+    public static SimpleChallengeResponse from(Challenge challenge) {
         return SimpleChallengeResponse.builder()
                 .id(challenge.getId())
                 .title(challenge.getTitle())
