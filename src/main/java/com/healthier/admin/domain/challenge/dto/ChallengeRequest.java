@@ -1,9 +1,11 @@
 package com.healthier.admin.domain.challenge.dto;
 
 import com.healthier.admin.domain.challenge.domain.ChallengeCategory;
+import lombok.Builder;
 import lombok.Getter;
 
 @Getter
+@Builder
 public class ChallengeRequest {
     private String title;
     private ChallengeCategory category;
