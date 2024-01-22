@@ -10,7 +10,9 @@ import com.healthier.admin.domain.challenge.dto.ChallengeResponse;
 import com.healthier.admin.domain.challenge.dto.SimpleChallengeResponse;
 import com.healthier.admin.domain.challenge.repository.ChallengeRepository;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Consumer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -22,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Slf4j
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class ChallengeService {
 
     private final ChallengeRepository challengeRepository;
@@ -43,50 +46,40 @@ public class ChallengeService {
     @Transactional
     public void updateChallenge(Long id, ChallengeRequest challengeRequest) {
         Challenge challenge = challengeRepository.findById(id).orElseThrow();
-        if (challengeRequest.getTitle() != null) challenge.updateTitle(challengeRequest.getTitle());
-        if (challengeRequest.getCategory() != null)
-            challenge.updateCategory(challengeRequest.getCategory());
-        if (challengeRequest.getMidtermGift() != null)
-            challenge.updateMidtermGift(challengeRequest.getMidtermGift());
-        if (challengeRequest.getFinalGift() != null)
-            challenge.updateFinalGift(challengeRequest.getFinalGift());
-        if (challengeRequest.getDuration() != null)
-            challenge.updateDuration(challengeRequest.getDuration());
-        if (challengeRequest.getTimes() != null) challenge.updateTimes(challengeRequest.getTimes());
-        if (challengeRequest.getMethod() != null)
-            challenge.updateMethod(challengeRequest.getMethod());
-        if (challengeRequest.getWhatContent() != null)
-            challenge.updateWhatContent(challengeRequest.getWhatContent());
-        if (challengeRequest.getWhyContent() != null)
-            challenge.updateWhyContent(challengeRequest.getWhyContent());
-        if (challengeRequest.getTipSubtitle() != null)
-            challenge.updateTipSubtitle(challengeRequest.getTipSubtitle());
-        if (challengeRequest.getTipContent() != null)
-            challenge.updateTipContent(challengeRequest.getTipContent());
-        if (challengeRequest.getGuide() != null) challenge.updateGuide(challengeRequest.getGuide());
-        if (challengeRequest.getSuccessImage1() != null)
-            challenge.updateSuccessImage1(challenge.getSuccessImage1());
-        if (challengeRequest.getSuccessImage2() != null)
-            challenge.updateSuccessImage2(challengeRequest.getSuccessImage2());
-        if (challengeRequest.getFailImage1() != null)
-            challenge.updateFailImage1(challenge.getFailImage1());
-        if (challengeRequest.getFailImage2() != null)
-            challenge.updateFailImage2(challenge.getFailImage2());
-        if (challengeRequest.getIsPublic() != null)
-            challenge.updateIsPublic(challengeRequest.getIsPublic());
-        if (challengeRequest.getImage() != null)
-            challenge.updateBasicImage(challengeRequest.getImage());
+
+        updateProperty(challengeRequest.getTitle(), challenge::updateTitle);
+        updateProperty(challengeRequest.getCategory(), challenge::updateCategory);
+        updateProperty(challengeRequest.getMidtermGift(), challenge::updateMidtermGift);
+        updateProperty(challengeRequest.getFinalGift(), challenge::updateFinalGift);
+        updateProperty(challengeRequest.getDuration(), challenge::updateDuration);
+        updateProperty(challengeRequest.getTimes(), challenge::updateTimes);
+        updateProperty(challengeRequest.getMethod(), challenge::updateMethod);
+        updateProperty(challengeRequest.getWhatContent(), challenge::updateWhatContent);
+        updateProperty(challengeRequest.getWhyContent(), challenge::updateWhyContent);
+        updateProperty(challengeRequest.getTipSubtitle(), challenge::updateTipSubtitle);
+        updateProperty(challengeRequest.getTipContent(), challenge::updateTipContent);
+        updateProperty(challengeRequest.getGuide(), challenge::updateGuide);
+        updateProperty(challengeRequest.getSuccessImage1(), challenge::updateSuccessImage1);
+        updateProperty(challengeRequest.getSuccessImage2(), challenge::updateSuccessImage2);
+        updateProperty(challengeRequest.getFailImage1(), challenge::updateFailImage1);
+        updateProperty(challengeRequest.getFailImage2(), challenge::updateFailImage2);
+        updateProperty(challengeRequest.getIsPublic(), challenge::updateIsPublic);
+        updateProperty(challengeRequest.getImage(), challenge::updateBasicImage);
 
         challengeRepository.save(challenge);
     }
 
-    @Transactional(readOnly = true)
+    private <T> void updateProperty(T value, Consumer<T> updateMethod) {
+        Optional.ofNullable(value).ifPresent(updateMethod);
+    }
+
+    // 챌린지 개별조회
     public ChallengeResponse getChallenge(Long id) {
         Challenge challenge = challengeRepository.findById(id).orElseThrow();
         return ChallengeResponse.from(challenge);
     }
 
-    @Transactional(readOnly = true)
+    // 챌린지 전체 조회
     public PageResponse<?> getAllChallenges(PageCondition pageCondition) {
         Pageable pageable = PageRequest.of(pageCondition.getPage(), pageCondition.getSize());
         Page<Challenge> challenges = challengeRepository.findAll(pageable);

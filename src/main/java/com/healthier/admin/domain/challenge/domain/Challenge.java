@@ -137,7 +137,7 @@ public class Challenge extends BaseEntity {
         this.failImage2 = failImage2;
     }
 
-    public void updateIsPublic(boolean isPublic) {
+    public void updateIsPublic(Boolean isPublic) {
         this.isPublic = isPublic;
     }
 }
