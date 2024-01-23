@@ -45,7 +45,10 @@ public class ChallengeService {
     // 챌린지 수정
     @Transactional
     public void updateChallenge(Long id, ChallengeRequest challengeRequest) {
-        Challenge challenge = challengeRepository.findById(id).orElseThrow();
+        Challenge challenge =
+                challengeRepository
+                        .findById(id)
+                        .orElseThrow(() -> new IllegalArgumentException("해당 챌린지가 존재하지 않습니다."));
 
         updateProperty(challengeRequest.getTitle(), challenge::updateTitle);
         updateProperty(challengeRequest.getCategory(), challenge::updateCategory);
@@ -75,7 +78,10 @@ public class ChallengeService {
 
     // 챌린지 개별조회
     public ChallengeResponse getChallenge(Long id) {
-        Challenge challenge = challengeRepository.findById(id).orElseThrow();
+        Challenge challenge =
+                challengeRepository
+                        .findById(id)
+                        .orElseThrow(() -> new IllegalArgumentException("해당 챌린지가 존재하지 않습니다."));
         return ChallengeResponse.from(challenge);
     }
 

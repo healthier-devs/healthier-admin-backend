@@ -2,18 +2,18 @@ package com.healthier.admin.domain.challenge.domain;
 
 public enum StampStatus {
     NOTHING("미인증"),
-    SUCCESS("인증성공"),
-    FAILURE("인증실패"),
-    CHECKING("확인중"),
+    SUCCESS("성공"),
+    FAILURE("실패"),
+    CHECKING("대기중"),
     REVIVAL("부활티켓적용");
 
-    private final String status;
+    private final String name;
 
-    StampStatus(String status) {
-        this.status = status;
+    StampStatus(String name) {
+        this.name = name;
     }
 
-    public String getStatus() {
-        return status;
+    public String getName() {
+        return name;
     }
 }
