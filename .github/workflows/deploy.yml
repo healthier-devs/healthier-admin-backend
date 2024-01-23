@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - "develop"
+      - "feat/deploy"
 
 env:
   AWS_REGION : "ap-northeast-2"
