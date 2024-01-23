@@ -28,4 +28,4 @@ cloud:
       bucket: ${S3_BUCKET_NAME}
 
 server:
-  url: ${SERVER_URL:http://localhost:8080}
+  url: ${SERVER_URL}
