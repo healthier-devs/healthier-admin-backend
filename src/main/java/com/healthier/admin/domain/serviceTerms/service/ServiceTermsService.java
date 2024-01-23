@@ -16,14 +16,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class ServiceTermsService {
     private final ServiceTermsRepository serviceTermsRepository;
 
-    // 서비스 약관 전체 조회 GET
+    // Get All Service Terms
     public List<ServiceTermsDto> getAllServiceTerms() {
         return serviceTermsRepository.findAll().stream()
                 .map(ServiceTermsDto::fromPreview)
                 .collect(Collectors.toList());
     }
 
-    // 서비스 약관 개별 조회 GET
+    // Get Service Term by ID
     public ServiceTermsDto getServiceTerms(Long id) {
         return serviceTermsRepository
                 .findById(id)
@@ -31,7 +31,7 @@ public class ServiceTermsService {
                 .orElseThrow(() -> new IllegalArgumentException("해당 약관이 존재하지 않습니다."));
     }
 
-    // 서비스 약관 수정 PATCH
+    // Update Service Term
     @Transactional
     public void updateServiceTerms(Long id, ServiceTermsDto serviceTermsDto) {
         ServiceTerms updatedServiceTerms =
