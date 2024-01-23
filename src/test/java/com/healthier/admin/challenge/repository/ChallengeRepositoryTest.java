@@ -3,7 +3,7 @@ package com.healthier.admin.challenge.repository;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.healthier.admin.domain.challenge.domain.Challenge;
-import com.healthier.admin.domain.challenge.domain.ChallengeStatus;
+import com.healthier.admin.domain.challenge.domain.ChallengeCategory;
 import com.healthier.admin.domain.challenge.repository.ChallengeRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class ChallengeRepositoryTest {
         Challenge challenge =
                 Challenge.builder()
                         .title("챌린지 테스트")
-                        .category("SLEEP")
+                        .category(ChallengeCategory.SLEEP)
                         .count(0)
                         .midtermGift(3000)
                         .finalGift(10000)
@@ -39,7 +39,7 @@ public class ChallengeRepositoryTest {
                         .successImage2("성공사진2")
                         .failImage1("실패사진1")
                         .failImage2("실패사진2")
-                        .status(ChallengeStatus.PROGRESS)
+                        .isPublic(true)
                         .build();
 
         // When
