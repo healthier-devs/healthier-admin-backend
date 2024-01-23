@@ -5,11 +5,10 @@ import com.healthier.admin.domain.notice.dto.NoticeDto;
 import com.healthier.admin.domain.notice.service.NoticeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Tag(name = "공지사항 API", description = "공지사항 API 입니다.")
 @CrossOrigin

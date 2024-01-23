@@ -1,9 +1,8 @@
 package com.healthier.admin.domain.notice.dto;
 
 import com.healthier.admin.domain.notice.domain.Notice;
-import lombok.*;
-
 import java.time.LocalDateTime;
+import lombok.*;
 
 @Getter
 @Setter

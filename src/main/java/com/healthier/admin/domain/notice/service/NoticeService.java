@@ -4,12 +4,11 @@ import com.healthier.admin.domain.notice.domain.Notice;
 import com.healthier.admin.domain.notice.domain.NoticeCategory;
 import com.healthier.admin.domain.notice.dto.NoticeDto;
 import com.healthier.admin.domain.notice.repository.NoticeRepository;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
