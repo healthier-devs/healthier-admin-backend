@@ -14,8 +14,14 @@ public class ServiceTerms extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     private TermsType type;
 
     @Column(columnDefinition = "TEXT")
     private String content;
+
+    public void updateServiceTerms(TermsType type, String content) {
+        this.type = type;
+        this.content = content;
+    }
 }
