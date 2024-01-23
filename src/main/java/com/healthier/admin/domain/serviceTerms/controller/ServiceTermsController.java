@@ -19,21 +19,21 @@ import org.springframework.web.bind.annotation.*;
 public class ServiceTermsController {
     private final ServiceTermsService serviceTermsService;
 
-    // 서비스 약관 전체 조회
+    // Get All Service Terms
     @Operation(summary = "서비스 약관 전체 조회")
     @GetMapping("/")
     public ApiResponse<List<ServiceTermsDto>> getAllServiceTerms() {
         return ApiResponse.createSuccessResponse(serviceTermsService.getAllServiceTerms());
     }
 
-    // 서비스 약관 개별 조회
+    // Get Service Term by ID
     @Operation(summary = "서비스 약관 개별 조회")
     @GetMapping("/{id}")
     public ApiResponse<ServiceTermsDto> getServiceTerms(@PathVariable Long id) {
         return ApiResponse.createSuccessResponse(serviceTermsService.getServiceTerms(id));
     }
 
-    // 서비스 약관 수정
+    // Update Service Term
     @Operation(summary = "서비스 약관 수정")
     @PatchMapping("/{id}")
     public ApiResponse<?> updateServiceTerms(
