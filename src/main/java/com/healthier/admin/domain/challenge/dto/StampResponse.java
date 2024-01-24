@@ -1,29 +1,29 @@
 package com.healthier.admin.domain.challenge.dto;
 
 import com.healthier.admin.domain.challenge.domain.Stamp;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 import lombok.Builder;
 import lombok.Getter;
 
 @Getter
 public class StampResponse {
-    private String stampId;
+    private Long stampId;
     private String userName;
     private String userEmail;
     private String challengeTitle;
     private String stampStatus;
     private String currentDays;
-    private String submitTime;
+    private LocalDateTime submitTime;
 
     @Builder
     private StampResponse(
-            String stampId,
+            Long stampId,
             String userName,
             String userEmail,
             String challengeTitle,
             String stampStatus,
             String currentDays,
-            String submitTime) {
+            LocalDateTime submitTime) {
         this.stampId = stampId;
         this.userName = userName;
         this.userEmail = userEmail;
@@ -35,15 +35,13 @@ public class StampResponse {
 
     public static StampResponse from(Stamp stamp) {
         return StampResponse.builder()
-                .stampId(stamp.getId().toString())
+                .stampId(stamp.getId())
                 .userName(maskUserName(stamp.getUserChallenge().getUser().getProfile().getName()))
                 .userEmail(maskUserEmail(stamp.getUserChallenge().getUser().getUsername()))
                 .challengeTitle(stamp.getUserChallenge().getChallenge().getTitle())
                 .stampStatus(stamp.getStatus().getName())
                 .currentDays(String.format("%d일차", stamp.getCurrentDays()))
-                .submitTime(
-                        stamp.getSubmitTime()
-                                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                .submitTime(stamp.getSubmitTime())
                 .build();
     }
 

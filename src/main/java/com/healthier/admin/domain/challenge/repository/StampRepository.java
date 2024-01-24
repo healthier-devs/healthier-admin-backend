@@ -4,8 +4,6 @@ import com.healthier.admin.domain.challenge.domain.Stamp;
 import com.healthier.admin.domain.challenge.domain.StampStatus;
 import java.time.LocalDateTime;
 import java.util.List;
-
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
