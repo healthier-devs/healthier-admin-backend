@@ -71,16 +71,8 @@ public class RewardDto {
     }
 
     public static RewardDto fromDetail(com.healthier.admin.domain.reward.domain.Reward reward) {
-        String productNotice = reward.getProductNotice();
-        String productNoticePreview =
-                productNotice == null
-                        ? null
-                        : productNotice.substring(0, Math.min(15, productNotice.length()));
-        String rewardNotice = reward.getRewardNotice();
-        String rewardNoticePreview =
-                rewardNotice == null
-                        ? null
-                        : rewardNotice.substring(0, Math.min(15, rewardNotice.length()));
+        String productNoticePreview = getPreview(reward.getProductNotice());
+        String rewardNoticePreview = getPreview(reward.getRewardNotice());
 
         return RewardDto.builder()
                 .id(reward.getId())
@@ -93,5 +85,9 @@ public class RewardDto {
                 .rewardNotice(rewardNoticePreview)
                 .isPublic(reward.isPublic())
                 .build();
+    }
+
+    private static String getPreview(String notice) {
+        return (notice != null) ? notice.substring(0, Math.min(15, notice.length())) : null;
     }
 }
