@@ -1,5 +1,7 @@
 package com.healthier.admin.domain.challenge.service;
 
+import static com.healthier.admin.common.utils.PropertyUpdater.updateProperty;
+
 import com.healthier.admin.common.dto.ImageUrl;
 import com.healthier.admin.common.dto.PageCondition;
 import com.healthier.admin.common.dto.PageResponse;
@@ -10,9 +12,7 @@ import com.healthier.admin.domain.challenge.dto.ChallengeResponse;
 import com.healthier.admin.domain.challenge.dto.SimpleChallengeResponse;
 import com.healthier.admin.domain.challenge.repository.ChallengeRepository;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
-import java.util.function.Consumer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -67,10 +67,6 @@ public class ChallengeService {
         updateProperty(challengeRequest.getImage(), challenge::updateBasicImage);
 
         challengeRepository.save(challenge);
-    }
-
-    private <T> void updateProperty(T value, Consumer<T> updateMethod) {
-        Optional.ofNullable(value).ifPresent(updateMethod);
     }
 
     // 챌린지 개별조회

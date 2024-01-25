@@ -1,8 +1,7 @@
 package com.healthier.admin.domain.reward.domain;
 
 import com.healthier.admin.common.entity.BaseEntity;
-import com.healthier.admin.domain.challenge.domain.Challenge;
-import com.healthier.admin.domain.user.domain.User;
+import com.healthier.admin.domain.challenge.domain.UserChallenge;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,14 +16,10 @@ public class UserReward extends BaseEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "userchallenge_id")
+    private UserChallenge userChallenge;
 
     private String phoneNumber;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "challenge_id")
-    private Challenge challenge;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reward_id")
@@ -37,4 +32,8 @@ public class UserReward extends BaseEntity {
     private boolean isSent;
 
     private boolean isFinal;
+
+    public void updateIsSent() {
+        this.isSent = true;
+    }
 }
