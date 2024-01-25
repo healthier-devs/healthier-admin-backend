@@ -89,6 +89,7 @@ public class RewardService {
             throw new IllegalStateException("해당 리워드가 선택되지 않았습니다.");
         }
         reward.updateIsSent();
+        // TODO: 푸쉬 알림 전송
         userRewardRepository.save(reward);
     }
 }

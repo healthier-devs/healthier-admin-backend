@@ -71,6 +71,17 @@ public class RewardDto {
     }
 
     public static RewardDto fromDetail(com.healthier.admin.domain.reward.domain.Reward reward) {
+        String productNotice = reward.getProductNotice();
+        String productNoticePreview =
+                productNotice == null
+                        ? null
+                        : productNotice.substring(0, Math.min(15, productNotice.length()));
+        String rewardNotice = reward.getRewardNotice();
+        String rewardNoticePreview =
+                rewardNotice == null
+                        ? null
+                        : rewardNotice.substring(0, Math.min(15, rewardNotice.length()));
+
         return RewardDto.builder()
                 .id(reward.getId())
                 .point(reward.getPoint())
@@ -78,8 +89,8 @@ public class RewardDto {
                 .type(reward.getType())
                 .name(reward.getName())
                 .duration(reward.getDuration())
-                .productNotice(reward.getProductNotice().substring(0, 15))
-                .rewardNotice(reward.getRewardNotice().substring(0, 15))
+                .productNotice(productNoticePreview)
+                .rewardNotice(rewardNoticePreview)
                 .isPublic(reward.isPublic())
                 .build();
     }
