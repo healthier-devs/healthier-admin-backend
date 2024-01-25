@@ -7,7 +7,6 @@ import com.healthier.admin.common.s3.S3UrlGenerator;
 import com.healthier.admin.domain.challenge.domain.Challenge;
 import com.healthier.admin.domain.challenge.dto.ChallengeRequest;
 import com.healthier.admin.domain.challenge.dto.ChallengeResponse;
-import com.healthier.admin.domain.challenge.dto.SimpleChallengeResponse;
 import com.healthier.admin.domain.challenge.repository.ChallengeRepository;
 import java.util.List;
 import java.util.Optional;
@@ -82,15 +81,15 @@ public class ChallengeService {
                 challengeRepository
                         .findById(id)
                         .orElseThrow(() -> new IllegalArgumentException("해당 챌린지가 존재하지 않습니다."));
-        return ChallengeResponse.from(challenge);
+        return ChallengeResponse.fromDetail(challenge);
     }
 
     // 챌린지 전체 조회
     public PageResponse<?> getAllChallenges(PageCondition pageCondition) {
         Pageable pageable = PageRequest.of(pageCondition.getPage(), pageCondition.getSize());
         Page<Challenge> challenges = challengeRepository.findAll(pageable);
-        List<SimpleChallengeResponse> simpleChallengeResponses =
-                challenges.stream().map(SimpleChallengeResponse::from).toList();
-        return new PageResponse<>(simpleChallengeResponses, challenges.getTotalElements());
+        List<ChallengeResponse> challengeResponses =
+                challenges.stream().map(ChallengeResponse::fromPreview).toList();
+        return new PageResponse<>(challengeResponses, challenges.getTotalElements());
     }
 }
