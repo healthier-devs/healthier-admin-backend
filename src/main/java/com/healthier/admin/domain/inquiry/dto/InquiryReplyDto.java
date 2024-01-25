@@ -1,6 +1,5 @@
 package com.healthier.admin.domain.inquiry.dto;
 
-import com.healthier.admin.domain.inquiry.domain.InquiryReply;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -13,7 +12,7 @@ public class InquiryReplyDto {
         this.content = content;
     }
 
-    public static InquiryReplyDto from(InquiryReply inquiryReply) {
-        return InquiryReplyDto.builder().content(inquiryReply.getReplyContent()).build();
+    public static InquiryReplyDto from(String content) {
+        return InquiryReplyDto.builder().content(content).build();
     }
 }

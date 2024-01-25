@@ -55,5 +55,8 @@ public class InquiryService {
         }
         InquiryReply inquiryReply = InquiryReply.of(inquiry, inquiryReplyDto.getContent());
         inquiryReplyRepository.save(inquiryReply);
+        inquiry.setReply(inquiryReply);
+        inquiry.updateIsAnswered();
+        inquiryRepository.save(inquiry);
     }
 }

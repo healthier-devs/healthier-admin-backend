@@ -4,6 +4,7 @@ import com.healthier.admin.domain.inquiry.domain.Inquiry;
 import com.healthier.admin.domain.inquiry.domain.InquiryImage;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -54,8 +55,15 @@ public class InquiryResponse {
                 .title(inquiry.getTitle())
                 .content(inquiry.getContent())
                 .category(inquiry.getCategory().getName())
-                .images(inquiry.getImages().stream().map(InquiryImage::getUrl).toList())
-                .reply(InquiryReplyDto.from(inquiry.getReply()))
+                .images(
+                        Optional.ofNullable(inquiry.getImages())
+                                .map(images -> images.stream().map(InquiryImage::getUrl).toList())
+                                .orElse(null))
+                .reply(
+                        InquiryReplyDto.from(
+                                inquiry.getReply() != null
+                                        ? inquiry.getReply().getReplyContent()
+                                        : null))
                 .build();
     }
 }
