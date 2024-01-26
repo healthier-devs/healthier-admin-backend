@@ -30,7 +30,7 @@ public class RewardService {
     public PageResponse<List<RewardDto>> getAllRewards(PageCondition pageCondition) {
         Pageable pageable = PageRequest.of(pageCondition.getPage(), pageCondition.getSize());
         Page<Reward> rewards = rewardRepository.findAll(pageable);
-        List<RewardDto> rewardResponses = rewards.stream().map(RewardDto::fromPreview).toList();
+        List<RewardDto> rewardResponses = rewards.map(RewardDto::fromPreview).toList();
         return new PageResponse<>(rewardResponses, rewards.getTotalElements());
     }
 
@@ -74,7 +74,7 @@ public class RewardService {
         Pageable pageable = PageRequest.of(pageCondition.getPage(), pageCondition.getSize());
         Page<UserReward> userRewards = userRewardRepository.findIsSelected(pageable);
         List<UserRewardResponse> userRewardResponses =
-                userRewards.stream().map(UserRewardResponse::from).toList();
+                userRewards.map(UserRewardResponse::from).toList();
         return new PageResponse<>(userRewardResponses, userRewards.getTotalElements());
     }
 

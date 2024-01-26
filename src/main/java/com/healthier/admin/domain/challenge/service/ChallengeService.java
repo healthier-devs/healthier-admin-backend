@@ -85,7 +85,7 @@ public class ChallengeService {
         Pageable pageable = PageRequest.of(pageCondition.getPage(), pageCondition.getSize());
         Page<Challenge> challenges = challengeRepository.findAll(pageable);
         List<ChallengeResponse> challengeResponses =
-                challenges.stream().map(ChallengeResponse::fromPreview).toList();
+                challenges.map(ChallengeResponse::fromPreview).toList();
         return new PageResponse<>(challengeResponses, challenges.getTotalElements());
     }
 }

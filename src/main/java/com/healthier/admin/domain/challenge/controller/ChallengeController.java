@@ -8,12 +8,11 @@ import com.healthier.admin.domain.challenge.dto.ChallengeResponse;
 import com.healthier.admin.domain.challenge.service.ChallengeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Tag(name = "챌린지 API", description = "건강챌린지 API입니다.")
 @CrossOrigin
@@ -52,7 +51,8 @@ public class ChallengeController {
 
     @Operation(summary = "챌린지 전체 조회")
     @GetMapping
-    public PageResponse<List<ChallengeResponse>> getAllChallenges(@ParameterObject PageCondition pageCondition) {
+    public PageResponse<List<ChallengeResponse>> getAllChallenges(
+            @ParameterObject PageCondition pageCondition) {
         return challengeService.getAllChallenges(pageCondition);
     }
 }

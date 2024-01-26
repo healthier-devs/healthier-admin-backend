@@ -8,12 +8,11 @@ import com.healthier.admin.domain.reward.dto.UserRewardResponse;
 import com.healthier.admin.domain.reward.service.RewardService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Tag(name = "리워드 API", description = "리워드 API 입니다.")
 @CrossOrigin
@@ -27,7 +26,8 @@ public class RewardController {
     // 리워드 목록 조회
     @Operation(summary = "리워드 목록 조회")
     @GetMapping
-    public ApiResponse<PageResponse<List<RewardDto>>> getAllRewards(@ParameterObject PageCondition pageCondition) {
+    public ApiResponse<PageResponse<List<RewardDto>>> getAllRewards(
+            @ParameterObject PageCondition pageCondition) {
         return ApiResponse.createSuccessResponse(rewardService.getAllRewards(pageCondition));
     }
 
@@ -57,7 +57,8 @@ public class RewardController {
     // 리워드 지급 전체 조회
     @Operation(summary = "리워드 지급 전체 조회")
     @GetMapping("/user")
-    public ApiResponse<PageResponse<List<UserRewardResponse>>> getAllUserRewards(@ParameterObject PageCondition pageCondition) {
+    public ApiResponse<PageResponse<List<UserRewardResponse>>> getAllUserRewards(
+            @ParameterObject PageCondition pageCondition) {
         return ApiResponse.createSuccessResponse(rewardService.getAllUserRewards(pageCondition));
     }
 
