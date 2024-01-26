@@ -16,7 +16,7 @@ public class UserReward extends BaseEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userchallenge_id")
+    @JoinColumn(name = "user_challenge_id")
     private UserChallenge userChallenge;
 
     private String phoneNumber;
