@@ -26,11 +26,11 @@ public class StampService {
 
     // 도장 전체 조회 (페이징)
     // Querydsl 통해 동적 필터링 (status, date)
-    public PageResponse<?> getAllStamps(
+    public PageResponse<List<StampResponse>> getAllStamps(
             PageCondition pageCondition, StampStatus status, LocalDate date) {
         Pageable pageable = PageRequest.of(pageCondition.getPage(), pageCondition.getSize());
         Page<Stamp> stamps = stampRepository.findStampsByFilter(status, date, pageable);
-        List<StampResponse> stampListResponse = stamps.stream().map(StampResponse::from).toList();
+        List<StampResponse> stampListResponse = stamps.map(StampResponse::from).toList();
         return new PageResponse<>(stampListResponse, stamps.getTotalElements());
     }
 

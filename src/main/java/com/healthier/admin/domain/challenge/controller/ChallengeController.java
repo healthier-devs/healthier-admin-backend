@@ -8,6 +8,7 @@ import com.healthier.admin.domain.challenge.dto.ChallengeResponse;
 import com.healthier.admin.domain.challenge.service.ChallengeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springdoc.core.annotations.ParameterObject;
@@ -50,7 +51,8 @@ public class ChallengeController {
 
     @Operation(summary = "챌린지 전체 조회")
     @GetMapping
-    public PageResponse<?> getAllChallenges(@ParameterObject PageCondition pageCondition) {
+    public PageResponse<List<ChallengeResponse>> getAllChallenges(
+            @ParameterObject PageCondition pageCondition) {
         return challengeService.getAllChallenges(pageCondition);
     }
 }
