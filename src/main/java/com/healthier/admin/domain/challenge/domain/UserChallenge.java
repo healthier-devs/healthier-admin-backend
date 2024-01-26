@@ -1,6 +1,7 @@
 package com.healthier.admin.domain.challenge.domain;
 
 import com.healthier.admin.common.entity.BaseEntity;
+import com.healthier.admin.domain.reward.domain.UserReward;
 import com.healthier.admin.domain.user.domain.User;
 import jakarta.persistence.*;
 import java.time.LocalDate;
@@ -39,4 +40,11 @@ public class UserChallenge extends BaseEntity {
 
     @Enumerated(value = EnumType.STRING)
     private UserChallengeStatus userChallengeStatus;
+
+    @OneToMany(
+            mappedBy = "userChallenge",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY)
+    private List<UserReward> rewards;
 }

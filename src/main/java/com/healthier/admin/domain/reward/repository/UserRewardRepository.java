@@ -6,5 +6,5 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRewardRepository extends JpaRepository<UserReward, Long> {
-    Page<UserReward> findIsSelected(Pageable pageable);
+    Page<UserReward> findBySelectedTrue(Pageable pageable);
 }

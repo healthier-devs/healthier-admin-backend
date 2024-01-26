@@ -72,7 +72,7 @@ public class RewardService {
     // 리워드 지급 전체 조회
     public PageResponse<List<UserRewardResponse>> getAllUserRewards(PageCondition pageCondition) {
         Pageable pageable = PageRequest.of(pageCondition.getPage(), pageCondition.getSize());
-        Page<UserReward> userRewards = userRewardRepository.findIsSelected(pageable);
+        Page<UserReward> userRewards = userRewardRepository.findBySelectedTrue(pageable);
         List<UserRewardResponse> userRewardResponses =
                 userRewards.map(UserRewardResponse::from).toList();
         return new PageResponse<>(userRewardResponses, userRewards.getTotalElements());

@@ -1,7 +1,6 @@
 package com.healthier.admin.domain.user.domain;
 
 import com.healthier.admin.common.entity.BaseEntity;
-import com.healthier.admin.domain.reward.domain.UserReward;
 import com.healthier.admin.domain.user.domain.healthInformation.HealthInformation;
 import jakarta.persistence.*;
 import java.util.List;
@@ -33,13 +32,6 @@ public class User extends BaseEntity {
             orphanRemoval = true,
             fetch = FetchType.LAZY)
     private List<HealthInterest> healthInterests; // 관심 건강 분야
-
-    @OneToMany(
-            mappedBy = "user",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true,
-            fetch = FetchType.LAZY)
-    private List<UserReward> rewards;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private HealthInformation healthInformation;
