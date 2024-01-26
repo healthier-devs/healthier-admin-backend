@@ -21,7 +21,7 @@ public class ServiceTermsController {
 
     // Get All Service Terms
     @Operation(summary = "서비스 약관 전체 조회")
-    @GetMapping("/")
+    @GetMapping
     public ApiResponse<List<ServiceTermsDto>> getAllServiceTerms() {
         return ApiResponse.createSuccessResponse(serviceTermsService.getAllServiceTerms());
     }

@@ -1,15 +1,14 @@
 package com.healthier.admin.domain.advertisement.domain;
 
 import com.healthier.admin.common.entity.BaseEntity;
+import com.healthier.admin.domain.advertisement.dto.AdvertisementDto;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
 @Entity
+@Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Advertisement extends BaseEntity {
@@ -35,4 +34,41 @@ public class Advertisement extends BaseEntity {
     private String url; // 광고 링크
 
     private boolean isPublished; // 배포상태 (공개/비공개)
+
+    public static Advertisement fromAdvertisementDto(AdvertisementDto advertisementDto) {
+        return Advertisement.builder()
+                .startDate(advertisementDto.getStartDate())
+                .endDate(advertisementDto.getEndDate())
+                .advertiser(advertisementDto.getAdvertiser())
+                .title(advertisementDto.getTitle())
+                .subtitle(advertisementDto.getSubtitle())
+                .image(advertisementDto.getImage())
+                .location(AdLocation.valueOf(advertisementDto.getLocation()))
+                .url(advertisementDto.getUrl())
+                .isPublished(advertisementDto.isPublished())
+                .build();
+    }
+
+    public void updateAdvertisement(
+            LocalDateTime startDate,
+            LocalDateTime endDate,
+            String advertiser,
+            String title,
+            String subtitle,
+            String image,
+            AdLocation location,
+            String url) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.advertiser = advertiser;
+        this.title = title;
+        this.subtitle = subtitle;
+        this.image = image;
+        this.location = location;
+        this.url = url;
+    }
+
+    public void updateAdvertisementIsPublished(boolean isPublished) {
+        this.isPublished = isPublished;
+    }
 }
