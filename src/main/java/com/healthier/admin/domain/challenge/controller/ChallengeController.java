@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name = "챌린지 API", description = "건강챌린지 admin API입니다.")
+@Tag(name = "챌린지 API", description = "건강챌린지 API입니다.")
 @CrossOrigin
 @RequestMapping(value = "/challenges")
 @RequiredArgsConstructor
