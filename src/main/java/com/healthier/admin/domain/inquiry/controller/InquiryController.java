@@ -8,12 +8,11 @@ import com.healthier.admin.domain.inquiry.dto.InquiryResponse;
 import com.healthier.admin.domain.inquiry.service.InquiryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Tag(name = "문의 관리 API", description = "문의 API 입니다.")
 @CrossOrigin
@@ -28,7 +27,8 @@ public class InquiryController {
     // 문의 리스트 (페이징)
     @Operation(summary = "문의 전체 조회")
     @GetMapping
-    public ApiResponse<PageResponse<List<InquiryResponse>>> getAllInquiries(@ParameterObject PageCondition pageCondition) {
+    public ApiResponse<PageResponse<List<InquiryResponse>>> getAllInquiries(
+            @ParameterObject PageCondition pageCondition) {
         log.info("문의 전체보기");
         return ApiResponse.createSuccessResponse(inquiryService.getAllInquiries(pageCondition));
     }
