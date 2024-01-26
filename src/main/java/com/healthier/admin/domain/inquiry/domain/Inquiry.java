@@ -4,13 +4,11 @@ import com.healthier.admin.common.entity.BaseEntity;
 import com.healthier.admin.domain.user.domain.User;
 import jakarta.persistence.*;
 import java.util.List;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
 @Entity
+@Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Inquiry extends BaseEntity {
@@ -31,6 +29,7 @@ public class Inquiry extends BaseEntity {
 
     private String title;
 
+    @Column(columnDefinition = "TEXT")
     private String content;
 
     private boolean isAnswered;
@@ -41,4 +40,12 @@ public class Inquiry extends BaseEntity {
             orphanRemoval = true,
             fetch = FetchType.LAZY)
     private List<InquiryImage> images;
+
+    public void updateIsAnswered() {
+        this.isAnswered = true;
+    }
+
+    public void setReply(InquiryReply reply) {
+        this.reply = reply;
+    }
 }

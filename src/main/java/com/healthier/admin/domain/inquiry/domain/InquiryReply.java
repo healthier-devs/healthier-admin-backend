@@ -2,13 +2,11 @@ package com.healthier.admin.domain.inquiry.domain;
 
 import com.healthier.admin.common.entity.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
 @Entity
+@Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class InquiryReply extends BaseEntity {
@@ -20,5 +18,10 @@ public class InquiryReply extends BaseEntity {
     @JoinColumn(name = "inquiry_id")
     private Inquiry inquiry;
 
+    @Column(columnDefinition = "TEXT")
     private String replyContent;
+
+    public static InquiryReply of(Inquiry inquiry, String replyContent) {
+        return InquiryReply.builder().inquiry(inquiry).replyContent(replyContent).build();
+    }
 }
