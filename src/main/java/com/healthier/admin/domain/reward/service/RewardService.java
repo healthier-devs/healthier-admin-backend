@@ -27,7 +27,7 @@ public class RewardService {
     private final UserRewardRepository userRewardRepository;
 
     // 리워드 목록 조회
-    public PageResponse<?> getAllRewards(PageCondition pageCondition) {
+    public PageResponse<List<RewardDto>> getAllRewards(PageCondition pageCondition) {
         Pageable pageable = PageRequest.of(pageCondition.getPage(), pageCondition.getSize());
         Page<Reward> rewards = rewardRepository.findAll(pageable);
         List<RewardDto> rewardResponses = rewards.stream().map(RewardDto::fromPreview).toList();
@@ -70,7 +70,7 @@ public class RewardService {
     }
 
     // 리워드 지급 전체 조회
-    public PageResponse<?> getAllUserRewards(PageCondition pageCondition) {
+    public PageResponse<List<UserRewardResponse>> getAllUserRewards(PageCondition pageCondition) {
         Pageable pageable = PageRequest.of(pageCondition.getPage(), pageCondition.getSize());
         Page<UserReward> userRewards = userRewardRepository.findIsSelected(pageable);
         List<UserRewardResponse> userRewardResponses =

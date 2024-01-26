@@ -13,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Tag(name = "챌린지 API", description = "건강챌린지 API입니다.")
 @CrossOrigin
 @RequestMapping(value = "/challenges")
@@ -50,7 +52,7 @@ public class ChallengeController {
 
     @Operation(summary = "챌린지 전체 조회")
     @GetMapping
-    public PageResponse<?> getAllChallenges(@ParameterObject PageCondition pageCondition) {
+    public PageResponse<List<ChallengeResponse>> getAllChallenges(@ParameterObject PageCondition pageCondition) {
         return challengeService.getAllChallenges(pageCondition);
     }
 }

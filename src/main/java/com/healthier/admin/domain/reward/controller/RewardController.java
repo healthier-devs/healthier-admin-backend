@@ -2,7 +2,9 @@ package com.healthier.admin.domain.reward.controller;
 
 import com.healthier.admin.common.ApiResponse;
 import com.healthier.admin.common.dto.PageCondition;
+import com.healthier.admin.common.dto.PageResponse;
 import com.healthier.admin.domain.reward.dto.RewardDto;
+import com.healthier.admin.domain.reward.dto.UserRewardResponse;
 import com.healthier.admin.domain.reward.service.RewardService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -10,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Tag(name = "리워드 API", description = "리워드 API 입니다.")
 @CrossOrigin
@@ -23,14 +27,14 @@ public class RewardController {
     // 리워드 목록 조회
     @Operation(summary = "리워드 목록 조회")
     @GetMapping
-    public ApiResponse<?> getAllRewards(@ParameterObject PageCondition pageCondition) {
+    public ApiResponse<PageResponse<List<RewardDto>>> getAllRewards(@ParameterObject PageCondition pageCondition) {
         return ApiResponse.createSuccessResponse(rewardService.getAllRewards(pageCondition));
     }
 
     // 리워드 개별 조회
     @Operation(summary = "리워드 개별 조회")
     @GetMapping("/{id}")
-    public ApiResponse<?> getReward(@PathVariable Long id) {
+    public ApiResponse<RewardDto> getReward(@PathVariable Long id) {
         return ApiResponse.createSuccessResponse(rewardService.getReward(id));
     }
 
@@ -53,7 +57,7 @@ public class RewardController {
     // 리워드 지급 전체 조회
     @Operation(summary = "리워드 지급 전체 조회")
     @GetMapping("/user")
-    public ApiResponse<?> getAllUserRewards(@ParameterObject PageCondition pageCondition) {
+    public ApiResponse<PageResponse<List<UserRewardResponse>>> getAllUserRewards(@ParameterObject PageCondition pageCondition) {
         return ApiResponse.createSuccessResponse(rewardService.getAllUserRewards(pageCondition));
     }
 

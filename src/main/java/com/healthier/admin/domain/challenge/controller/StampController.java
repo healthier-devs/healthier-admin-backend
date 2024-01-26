@@ -8,6 +8,8 @@ import com.healthier.admin.domain.challenge.service.StampService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.time.LocalDate;
+import java.util.List;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springdoc.core.annotations.ParameterObject;
@@ -26,7 +28,7 @@ public class StampController {
     // 도장 전체 조회하기
     @Operation(summary = "인증 전체 조회")
     @GetMapping
-    public PageResponse<?> getAllStamps(
+    public PageResponse<List<StampResponse>> getAllStamps(
             @ParameterObject PageCondition pageCondition,
             @RequestParam(required = false) StampStatus status,
             @RequestParam(required = false) LocalDate date) {

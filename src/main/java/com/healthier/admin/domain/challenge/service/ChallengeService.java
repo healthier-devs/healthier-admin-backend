@@ -81,7 +81,7 @@ public class ChallengeService {
     }
 
     // 챌린지 전체 조회
-    public PageResponse<?> getAllChallenges(PageCondition pageCondition) {
+    public PageResponse<List<ChallengeResponse>> getAllChallenges(PageCondition pageCondition) {
         Pageable pageable = PageRequest.of(pageCondition.getPage(), pageCondition.getSize());
         Page<Challenge> challenges = challengeRepository.findAll(pageable);
         List<ChallengeResponse> challengeResponses =
