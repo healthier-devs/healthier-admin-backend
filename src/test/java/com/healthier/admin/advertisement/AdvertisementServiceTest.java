@@ -74,7 +74,7 @@ public class AdvertisementServiceTest {
         advertisementDto2 = AdvertisementDto.builder().isPublished(true).build();
     }
 
-    @DisplayName("광고 전체 조회")
+    @DisplayName("Create Advertisement")
     @Test
     void getAllAdvertisementsTest() {
         // Given
@@ -91,7 +91,7 @@ public class AdvertisementServiceTest {
         assertTrue(result.stream().anyMatch(dto -> dto.getId().equals(advertisement2.getId())));
     }
 
-    @DisplayName("광고 개별 조회")
+    @DisplayName("Get Advertisement by ID")
     @Test
     void getAdvertisementTest() {
         // Given
@@ -114,7 +114,7 @@ public class AdvertisementServiceTest {
         assertEquals(advertisement1.isPublished(), result.isPublished());
     }
 
-    @DisplayName("광고 수정")
+    @DisplayName("Update Advertisement")
     @Test
     void updateAdvertisementTest() {
         // Given
@@ -134,7 +134,7 @@ public class AdvertisementServiceTest {
         assertEquals(advertisement1.getUrl(), advertisementDto1.getUrl());
     }
 
-    @DisplayName("광고 배포 상태 수정")
+    @DisplayName("Update Advertisement isPublished")
     @Test
     void updateAdvertisementIsPublishedTest() {
         // Given
