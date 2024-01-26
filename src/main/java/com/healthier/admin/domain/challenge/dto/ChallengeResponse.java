@@ -71,7 +71,7 @@ public class ChallengeResponse {
         this.isPublic = isPublic;
     }
 
-    public static ChallengeResponse from(Challenge challenge) {
+    public static ChallengeResponse fromDetail(Challenge challenge) {
         return ChallengeResponse.builder()
                 .id(challenge.getId())
                 .title(challenge.getTitle())
@@ -92,6 +92,15 @@ public class ChallengeResponse {
                 .successImage2(challenge.getSuccessImage2())
                 .failImage1(challenge.getFailImage1())
                 .failImage2(challenge.getFailImage2())
+                .isPublic(challenge.isPublic())
+                .build();
+    }
+
+    public static ChallengeResponse fromPreview(Challenge challenge) {
+        return ChallengeResponse.builder()
+                .id(challenge.getId())
+                .title(challenge.getTitle())
+                .category(challenge.getCategory().getName())
                 .isPublic(challenge.isPublic())
                 .build();
     }

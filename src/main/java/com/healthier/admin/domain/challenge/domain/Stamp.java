@@ -26,4 +26,8 @@ public class Stamp extends BaseEntity {
     private Integer currentDays;
     private LocalDateTime submitTime;
     private String image;
+
+    public void updateStatus(StampStatus status) {
+        this.status = status;
+    }
 }
