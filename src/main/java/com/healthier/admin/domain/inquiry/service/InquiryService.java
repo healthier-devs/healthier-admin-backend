@@ -27,7 +27,7 @@ public class InquiryService {
     private final InquiryReplyRepository inquiryReplyRepository;
 
     // 문의 리스트 (페이징)
-    public PageResponse<?> getAllInquiries(PageCondition pageCondition) {
+    public PageResponse<List<InquiryResponse>> getAllInquiries(PageCondition pageCondition) {
         Pageable pageable = PageRequest.of(pageCondition.getPage(), pageCondition.getSize());
         Page<Inquiry> inquiries = inquiryRepository.findAll(pageable);
         List<InquiryResponse> inquiryResponses =
