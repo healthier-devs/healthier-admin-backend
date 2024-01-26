@@ -21,7 +21,7 @@ public class AdvertisementController {
 
     // Create Advertisement
     @Operation(summary = "광고 등록")
-    @PostMapping("/")
+    @PostMapping
     public ApiResponse<?> createAdvertisement(@RequestBody AdvertisementDto advertisementDto) {
         advertisementService.createAdvertisement(advertisementDto);
         return ApiResponse.DEFAULT_OK;
@@ -29,7 +29,7 @@ public class AdvertisementController {
 
     // Get All Advertisements
     @Operation(summary = "광고 전체 조회")
-    @GetMapping("/")
+    @GetMapping
     public ApiResponse<List<AdvertisementDto>> getAllAdvertisements() {
         return ApiResponse.createSuccessResponse(advertisementService.getAllAdvertisements());
     }

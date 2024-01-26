@@ -21,7 +21,7 @@ public class NoticeController {
 
     // Create Notice
     @Operation(summary = "공지사항 등록")
-    @PostMapping("/")
+    @PostMapping
     public ApiResponse<?> createNotice(@RequestBody NoticeDto noticeDto) {
         noticeService.createNotice(noticeDto);
         return ApiResponse.DEFAULT_OK;
@@ -29,7 +29,7 @@ public class NoticeController {
 
     // Get All Notices
     @Operation(summary = "공지사항 전체 조회")
-    @GetMapping("/")
+    @GetMapping
     public ApiResponse<List<NoticeDto>> getAllNotices() {
         return ApiResponse.createSuccessResponse(noticeService.getAllNotices());
     }
