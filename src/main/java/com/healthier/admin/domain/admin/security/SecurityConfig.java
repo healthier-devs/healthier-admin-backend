@@ -54,11 +54,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         authorize ->
                                 authorize
-                                        /* Swagger */
                                         .requestMatchers(SwaggerPatterns)
                                         .permitAll()
-                                        /* api */
-                                        .requestMatchers("/**")
+                                        .requestMatchers("/auth/signin")
                                         .permitAll()
                                         .anyRequest()
                                         .authenticated())
